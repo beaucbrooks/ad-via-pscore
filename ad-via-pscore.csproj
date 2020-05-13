@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>ad_via_pscore</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Powershell.Commands.Management" Version="7.0.0" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.Management" Version="5.0.0-preview.3.20214.6" />
+    <PackageReference Include="System.Management.Automation" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <WindowsCompatibilityModule Include="Modules\WindowsCompatibility\WindowsCompatibility\*.*"/>
+  </ItemGroup>
+  <Target Name="CopyWindowsCompatibilityModule">
+    <Copy SourceFiles="@(WindowsCompatibilityModule)" DestinationFolder="$(PublishDir)Modules\WindowsCompatibility" />
+  </Target>    
+</Project>
+
+
+

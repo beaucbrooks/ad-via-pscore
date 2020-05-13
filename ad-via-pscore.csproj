@@ -12,11 +12,12 @@
     <PackageReference Include="System.Management" Version="5.0.0-preview.3.20214.6" />
     <PackageReference Include="System.Management.Automation" Version="7.0.0" />
   </ItemGroup>
+  <!-- WindowsCompatibility is a git submodule; we only want the .ps* files -->
   <ItemGroup>
     <WindowsCompatibilityModule Include="Modules\WindowsCompatibility\WindowsCompatibility\*.*"/>
   </ItemGroup>
-  <Target Name="CopyWindowsCompatibilityModule">
-    <Copy SourceFiles="@(WindowsCompatibilityModule)" DestinationFolder="$(PublishDir)Modules\WindowsCompatibility" />
+  <Target Name="CopyWindowsCompatibilityModule" AfterTargets="AfterBuild;AfterPublish">
+    <Copy SourceFiles="@(WindowsCompatibilityModule)" DestinationFolder="$(OutDir)Modules" />
   </Target>    
 </Project>
 

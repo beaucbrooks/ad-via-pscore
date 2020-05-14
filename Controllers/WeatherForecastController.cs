@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Example.Models;
+using MediatR;
 
 namespace ad_via_pscore.Controllers
 {
@@ -11,6 +13,7 @@ namespace ad_via_pscore.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly IMediator _mediator;
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -34,6 +37,22 @@ namespace ad_via_pscore.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        [Route("/new")]
+        public virtual async Task<IActionResult> CreateDirectoryObject([FromBody] DirectoryObject body)
+        {
+            var request = new Example.Models.Request(){
+                requestBody = body
+            };
+
+            return new ObjectResult(await _mediator.Send(request));
+        }
+
+        public WeatherForecastController(IMediator mediator)
+        {
+            _mediator = mediator;
         }
     }
 }

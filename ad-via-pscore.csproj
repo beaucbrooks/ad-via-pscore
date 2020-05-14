@@ -4,6 +4,7 @@
     <RootNamespace>ad_via_pscore</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.0.0" />
     <PackageReference Include="Microsoft.Powershell.Commands.Management" Version="7.0.0" />
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.0" />
@@ -14,7 +15,7 @@
   </ItemGroup>
   <!-- WindowsCompatibility is a git submodule; we only want the .ps* files -->
   <ItemGroup>
-    <WindowsCompatibilityModule Include="Modules\WindowsCompatibility\WindowsCompatibility\*.*"/>
+    <WindowsCompatibilityModule Include="Modules\WindowsCompatibility\WindowsCompatibility\*.*" />
   </ItemGroup>
   <Target Name="CopyWindowsCompatibilityModule" AfterTargets="AfterBuild;AfterPublish">
     <Copy SourceFiles="@(WindowsCompatibilityModule)" DestinationFolder="$(OutDir)Modules" />

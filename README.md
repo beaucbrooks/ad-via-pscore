@@ -2,10 +2,10 @@
 Front-end powershell with dotnetcore
 
 ## Purpose
-Invoke posh from dotnet core, import AD-related modules with the compatibility module
+Invoke posh from dotnet core, using mediatr for IPC; import AD-related modules with the compatibility module
 
 ## Notes
-This is just an example that serves as a reminder for me.  If you've stumble across this, know that you will need to complete the implementation:
+This is just an example that serves as a reminder for me.  If you've stumbled across this, know that you will need to complete the implementation:
 - Create models for the PSObjects you'll be working with
 - Invoke the session state
 - Import whatever posh modules you want
